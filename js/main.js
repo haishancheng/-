@@ -36,7 +36,7 @@ var top250Page = {
     _this.isloading = true
     _this.$top250.find('.loading').show();
     $.ajax({
-      url: 'http://api.douban.com/v2/movie/top250',
+      url: 'https://api.douban.com/v2/movie/top250',
       type: 'GET',
       data: {
         start: _this.index || 0,
@@ -109,7 +109,7 @@ var usBoxPage = {
     var _this = this
     _this.$beimei.find('.loading').show();
     $.ajax({
-      url: 'http://api.douban.com/v2/movie/us_box',
+      url: 'https://api.douban.com/v2/movie/us_box',
       type: 'GET',
       dataType: 'jsonp'
     }).done(function (ret) {
@@ -206,7 +206,7 @@ var searchPage = {
     _this.isloading = true
     _this.$search.find('.loading').show();
     $.ajax({
-      url: 'http://api.douban.com/v2/movie/search',
+      url: 'https://api.douban.com/v2/movie/search',
       type: 'GET',
       data: {
         q: _this.keyword,
