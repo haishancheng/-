@@ -1,0 +1,168 @@
+/* css reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* common css */
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+html,
+body,
+main {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  font-size: 12px;
+}
+
+main>section {
+  height: calc(100% - 60px);
+  padding: 10px;
+  background: #fff;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  /*ios 上增加弹性*/
+}
+
+main>section {
+  display: none;
+}
+
+main>section:first-child {
+  display: block;
+}
+
+.item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 10px;
+}
+
+.item>a {
+  display: flex;
+}
+
+.item .cover,
+.item .cover>img {
+  width: 80px;
+}
+
+.item .detail {
+  padding-left: 10px;
+  flex: 1;
+}
+
+.item .detail .extra {
+  color: #999;
+  margin-top: 5px;
+}
+
+.item .detail .score {
+  color: #ff5722;
+}
+
+.loading {
+  text-align: center;
+  padding-top: 10px;
+  display: none;
+}
+
+.loading .icon-loading {
+  font-size: 25px;
+  /* 一定要设置成块才能旋转 */
+  display: inline-block;
+  /*background: red;
+  display: block; 
+  设置成block也可以，但是是一条在旋转，有点夸张*/
+  /* animation：一帧动画时间 动画名称 均匀 无限 */
+  animation: 1s rotate linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+section .search-area {
+  color: #333;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+}
+
+section .search-area input {
+  width: calc(100% - 50px);
+  padding: 8px;
+  background-color: #eee;
+  border: none;
+  border-radius: 2px;
+  box-shadow: none;
+  outline: none;
+}
+
+section .search-area .button {
+  position: absolute;
+  right: 0;
+  padding: 8px 10px;
+  background: #FF5722;
+  color: #fff;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  border-top: 1px solid #ccc;
+  /* align-items:center; */
+  /* justify-content: center; */
+}
+
+footer>div {
+  flex: 1;
+  text-align: center;
+}
+
+footer>.active {
+  color: #ff5722;
+}
+
+footer>div>span {
+  display: block;
+  padding-top: 5px
+}
+
+footer>div>span:first-child {
+  font-size: 25px;
+}
+
+footer #returnTop {
+  position: fixed;
+  bottom: 80px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background: #000;
+  border-radius: 50%;
+}
