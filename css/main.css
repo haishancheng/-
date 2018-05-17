@@ -157,12 +157,13 @@ footer>div>span:first-child {
   font-size: 25px;
 }
 
-footer #returnTop {
+section .icon-returntop {
   position: fixed;
   bottom: 80px;
-  right: 10px;
-  width: 30px;
-  height: 30px;
-  background: #000;
-  border-radius: 50%;
+  right: 30px;
+  font-size: 30px;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  display: none;
 }

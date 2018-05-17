@@ -20,6 +20,11 @@ var top250Page = {
         if (_this.$top250.scrollTop() + _this.$top250.height() >= _this.$top250.find('.container').height()) {
           _this.start()
         }
+        if (_this.$top250.scrollTop() != 0) {
+          _this.$top250.find('.icon-returntop').fadeIn(500);
+        } else {
+          _this.$top250.find('.icon-returntop').fadeOut(500);
+        }
       }, 300)
     })
   },
@@ -54,7 +59,6 @@ var top250Page = {
     })
   },
   render: function (data) {
-    console.log(data)
     var _this = this
     data.subjects.forEach(function (movie) {
       //生成一个字符串（此处使用es6的字符模板）
@@ -73,6 +77,7 @@ var top250Page = {
           </a>
         </div>`
       var $node = $(tpl)
+      $node.find('a').attr('href', movie.alt)
       $node.find('.cover img').attr('src', movie.images.small)
       $node.find('.detail h1').text(movie.title)
       $node.find('.detail .score').text(movie.rating.average)
@@ -140,6 +145,7 @@ var usBoxPage = {
           </a>
         </div>`
       var $node = $(tpl)
+      $node.find('a').attr('href', movie.alt)
       $node.find('.cover img').attr('src', movie.images.small)
       $node.find('.detail h1').text(movie.title)
       $node.find('.detail .score').text(movie.rating.average)
@@ -189,6 +195,11 @@ var searchPage = {
         /* 通过top250中的container元素是否滚动到底部来判断 */
         if (_this.$search.scrollTop() + _this.$search.height() >= _this.$search.find('.search-result').height() + _this.$search.find('.search-area').height()) {
           _this.start()
+        }
+        if (_this.$search.scrollTop() != 0) {
+          _this.$search.find('.icon-returntop').fadeIn(500);
+        } else {
+          _this.$search.find('.icon-returntop').fadeOut(500);
         }
       }, 300)
     })
@@ -242,6 +253,7 @@ var searchPage = {
           </a>
         </div>`
       var $node = $(tpl)
+      $node.find('a').attr('href', movie.alt)
       $node.find('.cover img').attr('src', movie.images.small)
       $node.find('.detail h1').text(movie.title)
       $node.find('.detail .score').text(movie.rating.average)
@@ -265,13 +277,10 @@ var searchPage = {
 
 var App = {
   init: function () {
-    this.$tabs = $('footer>div:not(#returnTop)')
-    this.$loading = $('.loading')
-    this.$main = $('main')
+    this.$tabs = $('footer>div')
+    this.returnTop = $('section .icon-returntop')
     this.$sections = $('section')
-    this.isloading = false
-    this.index = 0
-    this.clock
+    this.pageIndex = 0
     top250Page.init()
     usBoxPage.init()
     searchPage.init()
@@ -279,9 +288,16 @@ var App = {
   },
   bind: function () {
     var _this = this
-    this.$tabs.on('click', function () {
+    _this.$tabs.on('click', function () {
       $(this).addClass('active').siblings().removeClass('active')
-      $('section').hide().eq($(this).index()).fadeIn()
+      if (_this.pageIndex === $(this).index()) {
+        return /* 防止多次点击同一页面多次fadeIn */
+      }
+      _this.$sections.hide().eq($(this).index()).fadeIn()
+      _this.pageIndex = $(this).index()
+    })
+    _this.returnTop.on('click', function () {
+      _this.$sections.eq(_this.pageIndex).scrollTop(0)
     })
   }
 }
